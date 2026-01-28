@@ -105,7 +105,7 @@ const TikTokSettings: FC<{
           </option>
         ))}
       </Select>
-      <div className={clsx('mt-[10px] rounded-[10px] p-[10px] text-[10px]',
+      <div className={clsx('mt-[10px] rounded-[14px] p-[14px] text-[14px]',
         privacy === 'SELF_ONLY' ? 'bg-gray-700 text-white' : 'bg-tableBorder text-white'
       )}>
         {privacyDisclosure[privacy]}
