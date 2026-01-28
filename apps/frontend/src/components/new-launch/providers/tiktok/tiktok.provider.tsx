@@ -54,7 +54,7 @@ const TikTokSettings: FC<{
       label: t('self_only', 'Self only'),
     },
   ];
-  const privacyDisclosure: Record<string, string = {
+  const privacyDisclosure: Record<string, string> = {
     PUBLIC_TO_EVERYONE: 'This video will be visible to everyone on TikTok.',
     MUTUAL_FOLLOW_FRIENDS: 'This video will be visible only to your mutual followers on TikTok.',
     FOLLOWER_OF_CREATOR: 'This video will be visible only to your followers on TikTok.',
@@ -109,6 +109,7 @@ const TikTokSettings: FC<{
         privacy === 'SELF_ONLY' ? 'bg-gray-700 text-white' : 'bg-tableBorder text-white'
       )}>
         {privacyDisclosure[privacy]}
+      </div>
       <div className="text-[14px] mt-[10px] mb-[18px] text-balance">
         {t(
           'choose_upload_without_posting_description',
