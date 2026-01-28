@@ -356,11 +356,15 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
 
         if (!addEditSets) {
           mutate();
+          const hasTiktok = checkAllValid.some((p: any) => p.integration.identifier === 'tiktok');
           toaster.show(
             !existingData.integration
               ? t('added_successfully', 'Added successfully')
               : t('updated_successfully', 'Updated successfully')
           );
+          if (hasTiktok) {
+            toaster.show('Your TikTok video has been submitted successfully. It may take a few minutes for TikTok to process the video and make it visible on your profile.');
+          }
         }
         if (customClose) {
           setTimeout(() => {

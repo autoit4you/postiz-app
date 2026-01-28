@@ -34,6 +34,7 @@ const TikTokSettings: FC<{
   const brand_content_toggle = watch('brand_content_toggle');
   const content_posting_method = watch('content_posting_method');
   const isUploadMode = content_posting_method === 'UPLOAD';
+  const privacy = watch('privacy_level') || 'PUBLIC_TO_EVERYONE';
 
   const privacyLevel = [
     {
@@ -53,6 +54,12 @@ const TikTokSettings: FC<{
       label: t('self_only', 'Self only'),
     },
   ];
+  const privacyDisclosure: Record<string, string = {
+    PUBLIC_TO_EVERYONE: 'This video will be visible to everyone on TikTok.',
+    MUTUAL_FOLLOW_FRIENDS: 'This video will be visible only to your mutual followers on TikTok.',
+    FOLLOWER_OF_CREATOR: 'This video will be visible only to your followers on TikTok.',
+    SELF_ONLY: 'This video will be private and only visible to you.'
+  };
   const contentPostingMethod = [
     {
       value: 'DIRECT_POST',
@@ -98,6 +105,10 @@ const TikTokSettings: FC<{
           </option>
         ))}
       </Select>
+      <div className={clsx('mt-[10px] rounded-[10px] p-[10px] text-[10px]',
+        privacy === 'SELF_ONLY' ? 'bg-gray-700 text-white' : 'bg-tableBorder text-white'
+      )}>
+        {privacyDisclosure[privacy]}
       <div className="text-[14px] mt-[10px] mb-[18px] text-balance">
         {t(
           'choose_upload_without_posting_description',
@@ -118,6 +129,10 @@ const TikTokSettings: FC<{
           </option>
         ))}
       </Select>
+      <div className="text-[14px] mt-[10px] text-balance text-gray-300">
+        After publishing, it may take a few minutes for TikTok to process the
+        video and make it visible on your profile.
+      </div>
       <Select
         label={t('label_auto_add_music', 'Auto add music')}
         {...register('autoAddMusic', {
