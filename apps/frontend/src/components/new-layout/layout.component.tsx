@@ -30,6 +30,7 @@ import { ContextWrapper } from '@gitroom/frontend/components/layout/user.context
 import { CopilotKit } from '@copilotkit/react-core';
 import { MantineWrapper } from '@gitroom/react/helpers/mantine.wrapper';
 import { Impersonate } from '@gitroom/frontend/components/layout/impersonate';
+import { AnnouncementBanner } from '@gitroom/frontend/components/layout/announcement.banner';
 import { Title } from '@gitroom/frontend/components/layout/title';
 import { TopMenu } from '@gitroom/frontend/components/layout/top.menu';
 import { LanguageComponent } from '@gitroom/frontend/components/layout/language.component';
@@ -95,6 +96,8 @@ export const LayoutComponent = ({ children }: { children: ReactNode }) => {
               {user.tier === 'FREE' && isGeneral && billingEnabled ? (
                 <FirstBillingComponent />
               ) : (
+                <>
+                <AnnouncementBanner />
                 <div className="flex-1 flex gap-[8px]">
                   <Support />
                   <div className="flex flex-col bg-newBgColorInner w-[80px] rounded-[12px]">
@@ -122,17 +125,32 @@ export const LayoutComponent = ({ children }: { children: ReactNode }) => {
                         <div className="hover:text-newTextColor">
                           <ModeComponent />
                         </div>
-                        <div className="w-[1px] h-[20px] bg-blockSeparator" />
-                        <LanguageComponent />
-                        <ChromeExtensionComponent />
-                        <div className="w-[1px] h-[20px] bg-blockSeparator" />
-                        <AttachToFeedbackIcon />
-                        <NotificationComponent />
                       </div>
                     </div>
-                    <div className="flex flex-1 gap-[1px]">{children}</div>
+                    <div className="flex-1 bg-newBgLineColor rounded-[12px] overflow-hidden flex flex-col gap-[1px] blurMe">
+                      <div className="flex bg-newBgColorInner h-[80px] px-[20px] items-center">
+                        <div className="text-[24px] font-[600] flex flex-1">
+                          <Title />
+                        </div>
+                        <div className="flex gap-[20px] text-textItemBlur">
+                          <StreakComponent />
+                          <div className="w-[1px] h-[20px] bg-blockSeparator" />
+                          <OrganizationSelector />
+                          <div className="hover:text-newTextColor">
+                            <ModeComponent />
+                          </div>
+                          <div className="w-[1px] h-[20px] bg-blockSeparator" />
+                          <LanguageComponent />
+                          <ChromeExtensionComponent />
+                          <div className="w-[1px] h-[20px] bg-blockSeparator" />
+                          <AttachToFeedbackIcon />
+                          <NotificationComponent />
+                        </div>
+                      </div>
+                      <div className="flex flex-1 gap-[1px]">{children}</div>
+                    </div>
                   </div>
-                </div>
+                </>
               )}
             </div>
           </CheckPayment>
