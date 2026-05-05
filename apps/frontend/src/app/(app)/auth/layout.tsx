@@ -20,8 +20,8 @@ export default async function AuthLayout({
       <ReturnUrlComponent />
       <div className="flex flex-col py-[40px] px-[20px] flex-1 lg:w-[600px] lg:flex-none rounded-[12px] text-white p-[12px] bg-[#1A1919]">
         <div className="w-full max-w-[440px] mx-auto justify-center gap-[20px] h-full flex flex-col text-white">
-          <div style="display: flex;flex-direction: row;gap: 10px;">
-            <img src="/LOGO2schatten.png" style="width: 44px;" />
+          <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+            <img src="/LOGO2schatten.png" style={{ width: "44px" }} />
             <span>X</span>
             <LogoTextComponent />
           </div>
