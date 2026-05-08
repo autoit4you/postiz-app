@@ -34,6 +34,8 @@ const TikTokSettings: FC<{
   const brand_content_toggle = watch('brand_content_toggle');
   const content_posting_method = watch('content_posting_method');
   const isUploadMode = content_posting_method === 'UPLOAD';
+  const privacy_level = watch('privacy_level');
+  const isSelfOnly = privacy_level == 'SELF_ONLY';
 
   const privacyLevel = [
     {
@@ -88,12 +90,12 @@ const TikTokSettings: FC<{
         label={t('label_who_can_see_this_video', 'Who can see this video?')}
         disabled={isUploadMode}
         {...register('privacy_level', {
-          value: 'PUBLIC_TO_EVERYONE',
+          value: '',
         })}
       >
         <option value="">{t('select', 'Select')}</option>
         {privacyLevel.map((item) => (
-          <option key={item.value} value={item.value}>
+          <option key={item.value} value={item.value} disabled={item.value == "SELF_ONLY" ? brand_content_toggle : false}  title={item.value == "SELF_ONLY" && brand_content_toggle ? "Branded content visibility cannot be set to private." : null}>
             {item.label}
           </option>
         ))}
@@ -147,7 +149,7 @@ const TikTokSettings: FC<{
           variant="hollow"
           disabled={isUploadMode}
           {...register('comment', {
-            value: true,
+            value: false,
           })}
         />
         <Checkbox
@@ -243,7 +245,7 @@ const TikTokSettings: FC<{
         <Checkbox
           variant="hollow"
           label={t('label_branded_content', 'Branded content')}
-          disabled={isUploadMode}
+          disabled={isUploadMode || isSelfOnly}
           {...register('brand_content_toggle', {
             value: false,
           })}
@@ -259,6 +261,9 @@ const TikTokSettings: FC<{
             'This video will be classified as Branded Content.'
           )}
         </div>
+        { isSelfOnly && (
+          <div className="my-[10px] text-[14px] text-balance">Visibility for branded content can't be private.</div>
+        )}
         {(brand_organic_toggle || brand_content_toggle) && (
           <div className="my-[10px] text-[14px] text-balance">
             {t(
