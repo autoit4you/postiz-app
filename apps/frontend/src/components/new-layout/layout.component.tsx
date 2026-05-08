@@ -105,7 +105,11 @@ export const LayoutComponent = ({ children }: { children: ReactNode }) => {
                       )}
                     >
                       <div className="flex flex-col h-full gap-[32px] flex-1 py-[12px]">
-                        <Logo />
+                        <div style="display: flex;flex-direction: column;">
+                          <img src="/LOGO2schatten.png" style="width:44px;height: 44px;margin: auto;">
+                          <span style="text-align: center;">X</span>
+                          <Logo />
+                        </div>
                         <TopMenu />
                       </div>
                     </div>
