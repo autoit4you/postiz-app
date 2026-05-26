@@ -75,8 +75,9 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
 
   const getIntegrations = useCallback(async () => {
     return (await fetch('/integrations')).json();
-  }, []);
+  }, {social: []});
   const { data: integrationsData } = useSWR<ProvidersResponse>('get-all-integrations-post-modal', getIntegrations);
+  console.log(integrationsData);
   const integrationsMap: Record<string, Provider> = {};
   integrationsData.social.forEach((e) => {integrationsMap[e.identifier] = e});
 
