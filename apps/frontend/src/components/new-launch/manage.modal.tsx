@@ -53,6 +53,15 @@ function countCharacters(text: string, type: string): number {
   return weightedLength(text);
 }
 
+interface Provider {
+  identifier: string;
+  name: string;
+}
+
+interface ProvidersResponse {
+  social: Provider[];
+}
+
 export const ManageModal: FC<AddEditModalProps> = (props) => {
   const t = useT();
   const fetch = useFetch();
@@ -67,7 +76,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
   const getIntegrations = useCallback(async () => {
     return (await fetch('/integrations')).json();
   }, []);
-  const { data: integrationsData } = useSWR('get-all-integrations-onboarding', getIntegrations);
+  const { data: integrationsData } = useSWR<ProvidersResponse>('get-all-integrations-onboarding', getIntegrations);
   const integrationsMap = {};
   integrationsData.social.forEach((e) => {integrationsMap[e.identifier] = e});
 
