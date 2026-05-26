@@ -44,7 +44,7 @@ import { useHasScroll } from '@gitroom/frontend/components/ui/is.scroll.hook';
 import { useShortlinkPreference } from '@gitroom/frontend/components/settings/shortlink-preference.component';
 import dayjs from 'dayjs';
 import { Button } from '@gitroom/react/form/button';
-import { IntegrationManager } from '@gitroom/nestjs-libraries/integrations/integration.manager';
+import useSWR from 'swr';
 
 function countCharacters(text: string, type: string): number {
   if (type !== 'x') {
@@ -63,7 +63,14 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
   const modal = useModals();
   const [showSettings, setShowSettings] = useState(false);
   const { data: shortlinkPreferenceData } = useShortlinkPreference();
-  const im = new IntegrationManager();
+
+  const getIntegrations = useCallback(async () => {
+    return (await fetch('/integrations')).json();
+  }, []);
+  const { data: integrationsData } = useSWR('get-all-integrations-onboarding', getIntegrations);
+  const integrationsMap = {};
+  integrationsData.social.forEach((e) => {integrationsMap[e.identifier] = e});
+
 
   const { addEditSets, mutate, customClose, dummy } = props;
 
@@ -630,10 +637,10 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                       : dummy
                       ? t('create_output', 'Create output')
                       : !existingData?.integration
-                      ? selectedIntegrations.length === 1 ? 'Add ' + im.getSocialIntegration(selectedIntegrations[0].integration.identifier).name + ' post to calendar' : 'Add to calendar'
+                      ? selectedIntegrations.length === 1 ? 'Add ' + selectedIntegrations[0].integration.identifier + ' post to calendar' : 'Add to calendar'
                       : existingData?.posts?.[0]?.state === 'DRAFT'
-                      ? selectedIntegrations.length === 1 ? 'Schedule ' + im.getSocialIntegration(selectedIntegrations[0].integration.identifier).name + ' post' : 'Schedule posts'
-                      : selectedIntegrations.length === 1 ? 'Update ' + im.getSocialIntegration(selectedIntegrations[0].integration.identifier).name + ' post' : 'Update posts'}
+                      ? selectedIntegrations.length === 1 ? 'Schedule ' + selectedIntegrations[0].integration.identifier + ' post' : 'Schedule posts'
+                      : selectedIntegrations.length === 1 ? 'Update ' + selectedIntegrations[0].integration.identifier + ' post' : 'Update posts'}
                   </div>
                   {!dummy && (
                     <div className="flex justify-center items-center h-[20px] w-[20px] pt-[4px] arrow-change">
@@ -651,7 +658,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
                     className="rounded-[8px] z-[300] disabled:cursor-not-allowed disabled:opacity-80 hidden group-hover:flex absolute bottom-[100%] -left-[12px] p-[12px] w-[206px] bg-newBgColorInner"
                   >
                     <div className="text-white rounded-[8px] bg-[#D82D7E] h-[44px] w-full flex justify-center items-center post-now">
-                      {selectedIntegrations.length === 1 ? 'Post to ' + im.getSocialIntegration(selectedIntegrations[0].integration.identifier).name + ' now' : 'Post Now'}
+                      {selectedIntegrations.length === 1 ? 'Post to ' + selectedIntegrations[0].integration.identifier + ' now' : 'Post Now'}
                     </div>
                   </button>
                 )}
