@@ -22,8 +22,6 @@ export default async function AuthLayout({
         <div className="w-full max-w-[440px] mx-auto justify-center gap-[20px] h-full flex flex-col text-white">
           <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
             <img src="/LOGO2schatten.png" style={{ width: "44px" }} />
-            <span>X</span>
-            <LogoTextComponent />
           </div>
           <div className="flex">{children}</div>
         </div>
