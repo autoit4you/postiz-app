@@ -261,7 +261,8 @@ const TikTokSettings: FC<{
         { isSelfOnly && (
           <div className="my-[10px] text-[14px] text-balance">Visibility for branded content can't be private.</div>
         )}
-          <div className="my-[10px] text-[14px] text-balance">
+      </div>
+      <div className="my-[10px] text-[14px] text-balance">
             {t(
               'by_posting_you_agree_to_tiktoks',
               "By posting, you agree to TikTok's "
@@ -287,7 +288,6 @@ const TikTokSettings: FC<{
                 </a>
               ) : undefined,
             ].filter((f) => f)}
-          </div>
       </div>
     </div>
   );
