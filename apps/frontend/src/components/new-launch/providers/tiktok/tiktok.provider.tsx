@@ -186,7 +186,7 @@ const TikTokSettings: FC<{
             value: false,
           })}
         />
-        {disclose && (
+        {disclose && (brand_content_toggle || brand_organic_toggle) && (
           <div className="bg-tableBorder p-[10px] mt-[10px] rounded-[10px] flex gap-[20px] items-center">
             <div>
               <svg
@@ -203,10 +203,7 @@ const TikTokSettings: FC<{
               </svg>
             </div>
             <div>
-              {t(
-                'your_video_will_be_labeled_promotional',
-                'Your video will be labeled "Promotional Content".'
-              )}
+              { brand_content_toggle ? 'Your video will be labeled "Paid partnership".' : 'Your video will be labeled "Promotional Content".'}
               <br />
               {t(
                 'this_cannot_be_changed_once_posted',
@@ -264,14 +261,13 @@ const TikTokSettings: FC<{
         { isSelfOnly && (
           <div className="my-[10px] text-[14px] text-balance">Visibility for branded content can't be private.</div>
         )}
-        {(brand_organic_toggle || brand_content_toggle) && (
           <div className="my-[10px] text-[14px] text-balance">
             {t(
               'by_posting_you_agree_to_tiktoks',
-              "By posting, you agree to TikTok's"
+              "By posting, you agree to TikTok's "
             )}
             {[
-              brand_organic_toggle || brand_content_toggle ? (
+              (
                 <a
                   target="_blank"
                   className="text-[#B69DEC] hover:underline"
@@ -279,7 +275,7 @@ const TikTokSettings: FC<{
                 >
                   {t('music_usage_confirmation', 'Music Usage Confirmation')}
                 </a>
-              ) : undefined,
+              ),
               brand_content_toggle ? <> {t('and', 'and')} </> : undefined,
               brand_content_toggle ? (
                 <a
@@ -292,7 +288,6 @@ const TikTokSettings: FC<{
               ) : undefined,
             ].filter((f) => f)}
           </div>
-        )}
       </div>
     </div>
   );
