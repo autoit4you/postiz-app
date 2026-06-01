@@ -22,6 +22,7 @@ export class VideoFunctionTool implements AgentToolInterface {
         identifier: z.string(),
         functionName: z.string(),
       }),
+      outputSchema: z.any(),
       execute: async (inputData, context) => {
         checkAuth(inputData, context);
         const videos = this._videoManagerService.getAllVideos();
@@ -32,7 +33,7 @@ export class VideoFunctionTool implements AgentToolInterface {
         );
 
         if (!findVideo) {
-          return { error: 'Function not found' };
+          throw new Error('Function not found');
         }
 
         const func = await this._moduleRef
