@@ -77,7 +77,6 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     return (await fetch('/integrations')).json();
   }, []);
   const { data: integrationsData } = useSWR<ProvidersResponse>('get-all-integrations-post-modal', getIntegrations);
-  console.log(integrationsData);
   const integrationsMap: Record<string, Provider> = {};
   integrationsData?.social?.forEach((e) => {integrationsMap[e.identifier] = e});
 
@@ -460,19 +459,19 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     [ref, repeater, tags, date, addEditSets, dummy, shortlinkPreferenceData]
   );
 
-  console.log(JSON.stringify(selectedIntegrations));
+  console.log(JSON.stringify(ref));
 
   useEffect(() => {
   console.log(
     "changed",
-    JSON.stringify(selectedIntegrations)
+    JSON.stringify(ref)
   );
-}, [selectedIntegrations]);
+}, [ref]);
 
 useEffect(() => {
   console.log(
     "value",
-    JSON.stringify(selectedIntegrations)
+    JSON.stringify(ref)
   );
 });
 
