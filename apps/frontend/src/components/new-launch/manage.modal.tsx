@@ -468,7 +468,7 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     "changed",
     selectedIntegrations[0]?.ref?.current?.getValues()
   );
-}, [ref, selectedIntegrations]);
+}, [ref, selectedIntegrations, selectedIntegrations[0]?.ref?.current]);
 
 useEffect(() => {
   console.log(
@@ -588,10 +588,10 @@ useEffect(() => {
             </div>
           </div>
         </div>
-        {selectedIntegrations.length === 1 && selectedIntegrations[0].integration.identifier === "tiktok" &&  (<div className="w-full flex justify-end mb-3"><div className="text-sm text-textItemBlur" style={{ marginRight: '30px'}}>
+        {!showSettings && selectedIntegrations.length === 1 && selectedIntegrations[0].integration.identifier === "tiktok" &&  (<div className="w-full flex justify-end mb-3"><div className="text-sm text-textItemBlur" style={{ marginRight: '30px'}}>
           By posting, you agree to TikTok's 
           {
-            selectedIntegrations[0].settings.brand_content_toggle && (
+            selectedIntegrations[0]?.ref?.current?.getValues().settings.brand_content_toggle && (
               <a
                   target="_blank"
                   className="text-[#B69DEC] hover:underline"
@@ -600,7 +600,7 @@ useEffect(() => {
             )
           }
           {
-            selectedIntegrations[0].settings.brand_content_toggle && (
+            selectedIntegrations[0]?.ref?.current?.getValues().settings.brand_content_toggle && (
               <span>and</span>
             )}
           <a
