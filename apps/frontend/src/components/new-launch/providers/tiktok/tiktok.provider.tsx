@@ -268,16 +268,6 @@ const TikTokSettings: FC<{
               "By posting, you agree to TikTok's "
             )}
             {[
-              (
-                <a
-                  target="_blank"
-                  className="text-[#B69DEC] hover:underline"
-                  href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en"
-                >
-                  {t('music_usage_confirmation', 'Music Usage Confirmation')}
-                </a>
-              ),
-              brand_content_toggle ? <> {t('and', 'and')} </> : undefined,
               brand_content_toggle ? (
                 <a
                   target="_blank"
@@ -287,6 +277,16 @@ const TikTokSettings: FC<{
                   {t('branded_content_policy', 'Branded Content Policy')}
                 </a>
               ) : undefined,
+              brand_content_toggle ? <> {t('and', 'and')} </> : undefined,
+              (
+                <a
+                  target="_blank"
+                  className="text-[#B69DEC] hover:underline"
+                  href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en"
+                >
+                  {t('music_usage_confirmation', 'Music Usage Confirmation')}
+                </a>
+              ),
             ].filter((f) => f)}
       </div>
     </div>

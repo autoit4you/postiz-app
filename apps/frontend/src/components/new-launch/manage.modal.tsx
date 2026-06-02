@@ -567,6 +567,27 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
             </div>
           </div>
         </div>
+        {selectedIntegrations.length === 0 && selectedIntegrations.integration.identifier === "tiktok" &&  (<div className="w-full flex justify-end mb-3"><div className="text-sm text-textItemBlur" style={{ marginRight: '30px'}}>
+          By posting, you agree to TikTok's 
+          {
+            selectedIntegrations.settings.brand_content_toggle && (
+              <a
+                  target="_blank"
+                  className="text-[#B69DEC] hover:underline"
+                  href="https://www.tiktok.com/legal/page/global/bc-policy/en"
+                >Branded Content Policy</a>
+            )
+          }
+          {
+            selectedIntegrations.settings.brand_content_toggle && (
+              <span>and</span>
+            )}
+          <a
+                  target="_blank"
+                  className="text-[#B69DEC] hover:underline"
+                  href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en"
+                >Music Usage Confirmation</a>
+        </div></div>)}
         <div className="select-none h-[84px] py-[20px] border-t border-newBorder flex items-center">
           <div className="flex-1 flex ps-[20px] gap-[8px]">
             {!dummy && (
