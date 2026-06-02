@@ -588,7 +588,8 @@ useEffect(() => {
             </div>
           </div>
         </div>
-        {!showSettings && selectedIntegrations.length === 1 && selectedIntegrations[0].integration.identifier === "tiktok" &&  (<div className="w-full flex justify-end mb-3"><div className="text-sm text-textItemBlur" style={{ marginRight: '30px'}}>
+        <div className="flex flex-col border-t border-newBorder py-[20px]">
+        {!showSettings && selectedIntegrations.length === 1 && selectedIntegrations[0].integration.identifier === "tiktok" &&  (<div className="w-full flex justify-end"><div className="text-sm text-textItemBlur" style={{ marginRight: '30px'}}>
           By posting, you agree to TikTok's 
           {
             selectedIntegrations[0]?.ref?.current?.getValues().settings.brand_content_toggle && (
@@ -609,7 +610,7 @@ useEffect(() => {
                   href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en"
                 >Music Usage Confirmation</a>
         </div></div>)}
-        <div className="select-none h-[84px] py-[20px] border-t border-newBorder flex items-center">
+        <div className="select-none h-[60px] flex items-center">
           <div className="flex-1 flex ps-[20px] gap-[8px]">
             {!dummy && (
               <TagsComponent
@@ -668,7 +669,7 @@ useEffect(() => {
               <div className="group cursor-pointer relative">
                 <button
                   disabled={
-                    selectedIntegrations.length === 0 || loading || locked
+                    selectedIntegrations.length === 0 || loading || locked || showSettings
                   }
                   onClick={schedule('schedule')}
                   className="text-white relative min-w-[180px] btnSub disabled:cursor-not-allowed disabled:opacity-80 outline-none gap-[8px] flex justify-center items-center h-[44px] rounded-[8px] bg-[#612BD3] ps-[20px] pe-[16px]"
@@ -686,7 +687,7 @@ useEffect(() => {
                   >
                     {selectedIntegrations.length === 0
                       ? t('check_circles_above', 'Check the circles above')
-                      : dummy
+                      : showSettings ? 'Close settings' : dummy
                       ? t('create_output', 'Create output')
                       : !existingData?.integration
                       ? selectedIntegrations.length === 1 ? 'Add ' + integrationsMap[selectedIntegrations[0].integration.identifier]?.name + ' post to calendar' : 'Add to calendar'
@@ -705,7 +706,7 @@ useEffect(() => {
                   <button
                     onClick={schedule('now')}
                     disabled={
-                      selectedIntegrations.length === 0 || loading || locked
+                      selectedIntegrations.length === 0 || loading || locked || showSettings
                     }
                     className="rounded-[8px] z-[300] disabled:cursor-not-allowed disabled:opacity-80 hidden group-hover:flex absolute bottom-[100%] -left-[12px] p-[12px] w-[206px] bg-newBgColorInner"
                   >
@@ -717,6 +718,7 @@ useEffect(() => {
               </div>
             )}
           </div>
+        </div>
         </div>
       </div>
       <CopilotPopup
