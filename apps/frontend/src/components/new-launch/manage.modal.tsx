@@ -590,7 +590,7 @@ useEffect(() => {
         </div>
         <div className="flex flex-col border-t border-newBorder py-[20px]">
         {!showSettings && selectedIntegrations.length === 1 && selectedIntegrations[0].integration.identifier === "tiktok" &&  (<div className="w-full flex justify-end"><div className="text-sm text-textItemBlur" style={{ marginRight: '30px'}}>
-          By posting, you agree to TikTok's 
+          By posting, you agree to TikTok's &nbsp;
           {
             selectedIntegrations[0]?.ref?.current?.getValues().settings.brand_content_toggle && (
               <a
@@ -602,7 +602,7 @@ useEffect(() => {
           }
           {
             selectedIntegrations[0]?.ref?.current?.getValues().settings.brand_content_toggle && (
-              <span>and</span>
+              <span> and </span>
             )}
           <a
                   target="_blank"
