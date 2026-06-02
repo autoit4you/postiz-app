@@ -459,17 +459,17 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     [ref, repeater, tags, date, addEditSets, dummy, shortlinkPreferenceData]
   );
 
-  useEffect(async () => {
+  useEffect(() => {
   console.log(
     "changed",
-    JSON.stringify(await ref?.current?.checkAllValid())
+    selectedIntegrations
   );
 }, [ref]);
 
-useEffect(async () => {
+useEffect(() => {
   console.log(
     "value",
-    JSON.stringify(await ref?.current?.checkAllValid())
+    selectedIntegrations
   );
 });
 
