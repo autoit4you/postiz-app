@@ -460,19 +460,19 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     [ref, repeater, tags, date, addEditSets, dummy, shortlinkPreferenceData]
   );
 
-  console.log(JSON.stringify(selectedIntegrations[0]?.settings));
+  console.log(JSON.stringify(selectedIntegrations));
 
   useEffect(() => {
   console.log(
     "changed",
-    selectedIntegrations[0]?.settings?.brand_content_toggle
+    JSON.stringify(selectedIntegrations)
   );
 }, [selectedIntegrations]);
 
 useEffect(() => {
   console.log(
     "value",
-    selectedIntegrations[0]?.settings?.brand_content_toggle
+    JSON.stringify(selectedIntegrations)
   );
 });
 
