@@ -460,6 +460,22 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     [ref, repeater, tags, date, addEditSets, dummy, shortlinkPreferenceData]
   );
 
+  console.log(JSON.stringify(selectedIntegrations[0].settings));
+
+  useEffect(() => {
+  console.log(
+    "changed",
+    selectedIntegrations[0]?.settings?.brand_content_toggle
+  );
+}, [selectedIntegrations]);
+
+useEffect(() => {
+  console.log(
+    "value",
+    selectedIntegrations[0]?.settings?.brand_content_toggle
+  );
+});
+
   return (
     <div className="w-full h-full flex-1 p-[40px] flex relative">
       <div className="flex flex-1 bg-newBgColorInner rounded-[20px] flex-col">
