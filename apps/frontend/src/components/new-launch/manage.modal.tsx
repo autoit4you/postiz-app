@@ -464,12 +464,20 @@ export const ManageModal: FC<AddEditModalProps> = (props) => {
     "changed",
     selectedIntegrations
   );
-}, [ref]);
+  console.log(
+    "changed",
+    selectedIntegrations[0]?.ref?.current?.getValues()
+  );
+}, [ref, selectedIntegrations]);
 
 useEffect(() => {
   console.log(
     "value",
     selectedIntegrations
+  );
+  console.log(
+    "value",
+    selectedIntegrations[0]?.ref?.current?.getValues()
   );
 });
 
