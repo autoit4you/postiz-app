@@ -152,7 +152,7 @@ export const LayoutComponent = ({ children }: { children: ReactNode }) => {
                       <div className="flex flex-1 gap-[1px]">{children}</div>
                     </div>
                   </div>
-                </>
+                </div>
               )}
             </div>
           </CheckPayment>
