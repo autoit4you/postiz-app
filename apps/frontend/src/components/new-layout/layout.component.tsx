@@ -153,6 +153,7 @@ export const LayoutComponent = ({ children }: { children: ReactNode }) => {
                     </div>
                   </div>
                 </div>
+                </>
               )}
             </div>
           </CheckPayment>
