@@ -45,13 +45,6 @@ import dayjs from 'dayjs';
 import { Button } from '@gitroom/react/form/button';
 import useSWR from 'swr';
 
-function countCharacters(text: string, type: string): number {
-  if (type !== 'x') {
-    return text.length;
-  }
-  return weightedLength(text);
-}
-
 interface Provider {
   identifier: string;
   name: string;
